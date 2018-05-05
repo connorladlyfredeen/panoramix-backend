@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from panoramix_backend.data_client import DataClient
 
 app = Flask(__name__)
-data_client = DataClient(MongoClient(os.environ['MONGODB_URI']).movies.imdb_movies)
+data_client = DataClient(MongoClient(os.environ['MONGODB_URI']).get_database().imdb_movies)
 
 
 @app.route('/movies')
