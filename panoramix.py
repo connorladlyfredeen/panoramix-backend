@@ -1,9 +1,11 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 import os
 from pymongo import MongoClient
 from panoramix_backend.data_client import DataClient
 
 app = Flask(__name__)
+CORS(app)
 data_client = DataClient(MongoClient(os.environ['MONGODB_URI']).get_database().imdb_movies)
 
 
