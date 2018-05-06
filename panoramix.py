@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
 from pymongo import MongoClient
@@ -11,4 +11,6 @@ data_client = DataClient(MongoClient(os.environ['MONGODB_URI']).get_database().i
 
 @app.route('/movies')
 def movies():
-    return jsonify(data_client.get_all_movies())
+    limit = int(request.args.get('limit', -1))
+    page = int(request.args.get('page', -1))
+    return jsonify(data_client.get_movies(limit=limit, page=page))
