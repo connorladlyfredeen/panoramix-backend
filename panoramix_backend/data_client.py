@@ -26,3 +26,6 @@ class DataClient(object):
             'total_pages': total_pages,
             'movies': movies
         }
+
+    def get_movie(self, imdb_id: str):
+        return self.movies.find_one(filter={'$eq': {'imdbID': imdb_id}})

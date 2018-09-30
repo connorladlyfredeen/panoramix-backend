@@ -14,3 +14,8 @@ def movies():
     limit = int(request.args.get('limit', -1))
     page = int(request.args.get('page', -1))
     return jsonify(data_client.get_movies(limit=limit, page=page))
+
+
+@app.route('/movie/<string:imdb_id>')
+def movie(imdb_id: str):
+    return jsonify(data_client.get_movie(imdb_id=imdb_id))
