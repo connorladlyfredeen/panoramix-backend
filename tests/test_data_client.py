@@ -20,7 +20,23 @@ class MockCollection:
     def count(self):
         return len(self.test_data)
 
+    def find_one(self, filter):
+        for movie in self.test_data:
+            if movie['imdbID'] == filter['imdbID']:
+                return movie
+        return None
+
 
 def test_get_data():
     data_client = DataClient(MockCollection())
     assert data_client.get_movies() == expected_data
+
+
+def test_get_single_movie_exists():
+    data_client = DataClient(MockCollection())
+    assert data_client.get_movie('tt0468569') == test_data
+
+
+def test_get_single_movie_not_exists():
+    data_client = DataClient(MockCollection())
+    assert data_client.get_movie('123') is None

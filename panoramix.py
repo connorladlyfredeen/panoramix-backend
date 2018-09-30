@@ -18,4 +18,7 @@ def movies():
 
 @app.route('/movie/<string:imdb_id>')
 def movie(imdb_id: str):
-    return jsonify(data_client.get_movie(imdb_id=imdb_id))
+    res = data_client.get_movie(imdb_id=imdb_id)
+    if res is None:
+        return jsonify({}), 404
+    return jsonify(res)
