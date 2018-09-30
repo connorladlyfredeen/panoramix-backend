@@ -20,7 +20,7 @@ class MockCollection:
     def count(self):
         return len(self.test_data)
 
-    def find_one(self, filter):
+    def find_one(self, filter: dict, _dict_2: dict):
         for movie in self.test_data:
             if movie['imdbID'] == filter['imdbID']:
                 return movie
