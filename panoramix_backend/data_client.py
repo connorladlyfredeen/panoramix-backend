@@ -28,4 +28,4 @@ class DataClient(object):
         }
 
     def get_movie(self, imdb_id: str):
-        return self.movies.find_one(filter={'$eq': {'imdbID': imdb_id}})
+        return self.movies.find_one(filter={'imdbID': imdb_id})
